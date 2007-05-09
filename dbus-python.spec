@@ -3,7 +3,7 @@
 
 Summary: D-Bus Python Bindings 
 Name: dbus-python
-Version: 0.80.2
+Version: 0.81.0
 Release: %mkrel 1
 URL: http://www.freedesktop.org/software/dbus
 Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.bz2
