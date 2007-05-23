@@ -1,10 +1,12 @@
 %define dbus_glib_version 0.70
 %define dbus_version 0.93
 
+%define _requires_exceptions pkgconfig\(.*\)
+
 Summary: D-Bus Python Bindings 
 Name: dbus-python
 Version: 0.81.0
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://www.freedesktop.org/software/dbus
 Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.bz2
 License: AFL/GPL
