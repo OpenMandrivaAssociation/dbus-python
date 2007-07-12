@@ -5,10 +5,11 @@
 
 Summary: D-Bus Python Bindings 
 Name: dbus-python
-Version: 0.81.1
+Version: 0.82.1
 Release: %mkrel 1
 URL: http://www.freedesktop.org/software/dbus
-Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.bz2
+Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz
+Source1: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz.asc
 License: AFL/GPL
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
