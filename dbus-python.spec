@@ -6,28 +6,34 @@
 Summary: D-Bus Python Bindings 
 Name: dbus-python
 Version: 0.82.2
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://www.freedesktop.org/software/dbus
 Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz
 Source1: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz.asc
 License: AFL/GPL
-Group: System/Libraries
+Group: Development/Python
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dbus-devel >= %{dbus_version}
 BuildRequires: dbus-glib-devel >= %{dbus_glib_version}
 BuildRequires: python-devel
-Requires: dbus >= %{dbus_version}
-
 
 %description
+D-Bus python bindings for use with python programs.   
 
+%package -n python-dbus
+Summary: D-Bus Python Bindings
+Group: Development/Python
+Obsoletes: %{name} < %{version}-%{release}
+Provides: %{name} = %{version}-%{release}
+Requires: dbus >= %{dbus_version}
+
+%description -n python-dbus
 D-Bus python bindings for use with python programs.   
 
 %prep
 %setup -q
 
 %build
-
 %configure2_5x
 %make
 
@@ -42,7 +48,7 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 %clean
 rm -rf %{buildroot}
 
-%files
+%files -n python-dbus
 %defattr(-,root,root)
 %doc COPYING ChangeLog NEWS doc/*.txt 
 %doc README TODO 
