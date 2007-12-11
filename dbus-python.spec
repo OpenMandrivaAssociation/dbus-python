@@ -50,7 +50,7 @@ rm -rf %{buildroot}
 
 %files -n python-dbus
 %defattr(-,root,root)
-%doc COPYING ChangeLog NEWS doc/*.txt
+%doc COPYING NEWS doc/*.txt
 %doc README TODO
 %{py_platsitedir}/*dbus*
 %{py_puresitedir}/*dbus*
