@@ -12,7 +12,6 @@ Source0: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz
 Source1: http://dbus.freedesktop.org/releases/%{name}-%{version}.tar.gz.asc
 License: AFL/GPL
 Group: Development/Python
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dbus-devel >= %{dbus_version}
 BuildRequires: dbus-glib-devel >= %{dbus_glib_version}
 BuildRequires: python-devel
