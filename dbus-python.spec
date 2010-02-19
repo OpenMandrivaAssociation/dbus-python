@@ -5,13 +5,12 @@
 
 Summary: D-Bus Python Bindings
 Name: dbus-python
-Version: 0.83.0
-Release: %mkrel 5
+Version: 0.83.1
+Release: %mkrel 1
 URL: http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Source1: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 Patch0: dbus-python-0.83.0-fix-linkage.patch
-Patch1: dbus-python-0.83.0-memleak.patch
 License: MIT
 Group: Development/Python
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -34,8 +33,8 @@ D-Bus python bindings for use with python programs.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p0
+# not sure it is really needed
+#patch0 -p0
 
 %build
 %configure2_5x
