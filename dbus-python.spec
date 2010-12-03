@@ -5,8 +5,8 @@
 
 Summary: D-Bus Python Bindings
 Name: dbus-python
-Version: 0.83.1
-Release: %mkrel 2
+Version: 0.83.2
+Release: %mkrel 1
 URL: http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Source1: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
@@ -37,7 +37,7 @@ D-Bus python bindings for use with python programs.
 #patch0 -p0
 
 %build
-%configure2_5x
+%configure2_5x --disable-api-docs
 %make
 
 %install
