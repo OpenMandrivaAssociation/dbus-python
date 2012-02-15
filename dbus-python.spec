@@ -1,7 +1,7 @@
 Summary: D-Bus Python Bindings
 Name: dbus-python
 Version: 1.0.0
-Release: 2
+Release: 3
 License: MIT
 Group: Development/Python
 URL: http://www.freedesktop.org/wiki/Software/DBusBindings
@@ -47,13 +47,14 @@ rm -rf %{buildroot}
 
 #remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
+find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 %files -n python-dbus
 %doc COPYING NEWS doc/*.txt
 %doc README TODO
 %{py_puresitedir}/dbus*
 %{py_platsitedir}/_dbus_*
-%{_includedir}/dbus-1.0/dbus/*.h
 
 %files -n python-dbus-devel
 %{_libdir}/pkgconfig/*.pc
+%{_includedir}/dbus-1.0/dbus/*.h
