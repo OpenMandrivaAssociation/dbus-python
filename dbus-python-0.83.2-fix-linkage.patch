@@ -1,0 +1,26 @@
+--- _dbus_glib_bindings/Makefile.am.link	2008-11-28 16:50:03.000000000 +0100
++++ _dbus_glib_bindings/Makefile.am	2011-04-09 20:12:13.000000000 +0200
+@@ -3,7 +3,7 @@
+ AM_CPPFLAGS = -I$(top_srcdir)/include $(DBUS_CFLAGS) $(DBUS_GLIB_CFLAGS) \
+ 	      $(PYTHON_INCLUDES)
+ AM_LDFLAGS = -module -avoid-version \
+-	     -export-symbols-regex init_dbus_glib_bindings \
+-	     $(DBUS_LIBS) $(DBUS_GLIB_LIBS)
++	     -export-symbols-regex init_dbus_glib_bindings
+ 
++_dbus_glib_bindings_la_LIBADD = $(DBUS_LIBS) $(DBUS_GLIB_LIBS) $(PYTHON_LIBS)
+ _dbus_glib_bindings_la_SOURCES = module.c
+--- _dbus_bindings/Makefile.am.link	2010-11-23 20:00:50.000000000 +0100
++++ _dbus_bindings/Makefile.am	2011-04-09 20:13:51.000000000 +0200
+@@ -1,8 +1,9 @@
+ pyexec_LTLIBRARIES = _dbus_bindings.la
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/include $(DBUS_CFLAGS) $(PYTHON_INCLUDES)
+-AM_LDFLAGS = -module -avoid-version -export-symbols-regex init_dbus_bindings \
+-	     $(DBUS_LIBS)
++AM_LDFLAGS = -module -avoid-version -export-symbols-regex init_dbus_bindings
++
++_dbus_bindings_la_LIBADD = $(DBUS_LIBS) $(PYTHON_LIBS)
+ _dbus_bindings_la_SOURCES = \
+ 			    abstract.c \
+ 			    bus.c \
