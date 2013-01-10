@@ -45,7 +45,7 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
 %doc COPYING NEWS doc/*.txt
-%doc README TODO
+%doc README
 %{py_puresitedir}/dbus*
 %{py_platsitedir}/_dbus_*
 %{_includedir}/dbus-1.0/dbus/*.h
