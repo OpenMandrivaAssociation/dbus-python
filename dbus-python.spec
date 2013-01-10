@@ -34,7 +34,6 @@ D-Bus python bindings for use with python programs.
 #patch0 -p0 -b .link
 
 %build
-autoreconf -fi
 %configure2_5x --disable-api-docs
 %make
 
