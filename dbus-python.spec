@@ -9,7 +9,7 @@ Version:		1.1.1
 Release:		1
 URL:			http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Patch0:			dbus-python-0.83.2-fix-linkage.patch
+#Patch0:			dbus-python-0.83.2-fix-linkage.patch
 License:		MIT
 Group:			Development/Python
 BuildRequires:	dbus-devel >= %{dbus_version}
@@ -31,7 +31,7 @@ D-Bus python bindings for use with python programs.
 
 %prep
 %setup -q
-%patch0 -p0 -b .link
+#patch0 -p0 -b .link
 
 %build
 autoreconf -fi
