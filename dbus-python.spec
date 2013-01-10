@@ -9,7 +9,6 @@ Version:		1.1.1
 Release:		1
 URL:			http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Source1:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 Patch0:			dbus-python-0.83.2-fix-linkage.patch
 License:		MIT
 Group:			Development/Python
