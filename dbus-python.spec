@@ -1,7 +1,7 @@
 %define dbus_glib_version 0.74
 %define dbus_version 1.1.2
 
-%define _requires_exceptions pkgconfig\(.*\)
+#define _requires_exceptions pkgconfig\(.*\)
 
 Summary:		D-Bus Python Bindings
 Name:			dbus-python
