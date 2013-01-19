@@ -1,12 +1,12 @@
 %define dbus_glib_version 0.74
 %define dbus_version 1.1.2
 
-#define _requires_exceptions pkgconfig\(.*\)
+%define _requires_exceptions pkgconfig\(.*\)
 
 Summary:		D-Bus Python Bindings
 Name:			dbus-python
 Version:		1.1.1
-Release:		1
+Release:		2
 URL:			http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 #Patch0:			dbus-python-0.83.2-fix-linkage.patch
