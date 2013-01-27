@@ -6,7 +6,7 @@
 Summary:		D-Bus Python Bindings
 Name:			dbus-python
 Version:		1.1.1
-Release:		2
+Release:		3
 URL:			http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Source1:		dbus-python.rpmlintrc
