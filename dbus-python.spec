@@ -1,45 +1,45 @@
 %define dbus_glib_version 0.74
 %define dbus_version 1.1.2
 
-Summary: D-Bus Python Bindings
-Name: dbus-python
-Version: 1.1.1
-Release: 3
-URL: http://www.freedesktop.org/wiki/Software/DBusBindings
-Source0: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-#Patch0: dbus-python-0.83.2-fix-linkage.patch
-License: MIT
-Group: Development/Python
-BuildRequires: dbus-devel >= %{dbus_version}
-BuildRequires: dbus-glib-devel >= %{dbus_glib_version}
-BuildRequires: python-devel
-BuildRequires: python3-devel
+Summary:	D-Bus Python Bindings
+Name:		dbus-python
+Version:	1.1.1
+Release:	4
+URL:		http://www.freedesktop.org/wiki/Software/DBusBindings
+Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+#Patch0:	dbus-python-0.83.2-fix-linkage.patch
+License:	MIT
+Group:		Development/Python
+BuildRequires:	pkgconfig(dbus-1) >= %{dbus_version}
+BuildRequires:	pkgconfig(dbus-glib-1) >= %{dbus_glib_version}
+BuildRequires:	python-devel
+BuildRequires:	python3-devel
 
 %description
 D-Bus python bindings for use with python programs.
 
 %package -n python-dbus-devel
-Summary: Development files for python-dbus and python3-dbus
-Group: Development/Python
+Summary:	Development files for python-dbus and python3-dbus
+Group:		Development/Python
 
 %description -n python-dbus-devel
-Header files for python-dbus and python3-dbus
+Header files for python-dbus and python3-dbus.
 
 %package -n python-dbus
-Summary: D-Bus Python Bindings
-Group: Development/Python
-Obsoletes: %{name} < %{version}-%{release}
-Provides: %{name} = %{version}-%{release}
-Requires: dbus >= %{dbus_version}
+Summary:	D-Bus Python Bindings
+Group:		Development/Python
+Obsoletes:	%{name} < %{version}-%{release}
+Provides:	%{name} = %{version}-%{release}
+Requires:	dbus >= %{dbus_version}
 
 %description -n python-dbus
 D-Bus python 3 bindings for use with python programs.
 
 %package -n python3-dbus
-Summary: D-Bus Python 3 Bindings
-Group: Development/Python
-Provides: python3-dbus = %{version}-%{release}
-Requires: dbus >= %{dbus_version}
+Summary:	D-Bus Python 3 Bindings
+Group:		Development/Python
+Provides:	python3-dbus = %{version}-%{release}
+Requires:	dbus >= %{dbus_version}
 
 %description -n python3-dbus
 D-Bus python bindings for use with python 3 programs.
