@@ -52,12 +52,14 @@ cp -r python2 python3
 
 %build
 pushd python2
+sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
 %configure2_5x --disable-api-docs
 %make
 popd
 
 pushd python3
+sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
 %configure2_5x --disable-api-docs PYTHON=%__python3
 %make
