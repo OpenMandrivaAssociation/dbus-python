@@ -36,7 +36,6 @@ Requires: dbus >= %{dbus_version}
 D-Bus python 3 bindings for use with python programs.
 
 %package -n python3-dbus
-Version: %{py3version}
 Summary: D-Bus Python 3 Bindings
 Group: Development/Python
 Provides: python3-dbus = %{version}-%{release}
@@ -78,7 +77,7 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
 %doc python2/COPYING python2/NEWS python2/doc/*.txt
-%doc python2/README python2/TODO
+%doc python2/README
 %{py_puresitedir}/dbus*
 %{py_platsitedir}/_dbus_*
 
@@ -91,6 +90,7 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 %files -n python-dbus-devel
 %{_includedir}/dbus-1.0/dbus/*.h
 %{_libdir}/pkgconfig/*.pc
+
 
 
 %changelog
