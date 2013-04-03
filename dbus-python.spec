@@ -1,56 +1,108 @@
 %define dbus_glib_version 0.74
 %define dbus_version 1.1.2
+%define py2version 0.84.0
+%define py3version 1.1.1
 
-%define _requires_exceptions pkgconfig\(.*\)
+%define __noautoreq pkgconfig.*
 
-Summary:		D-Bus Python Bindings
-Name:			dbus-python
-Version:		1.1.1
-Release:		3
-URL:			http://www.freedesktop.org/wiki/Software/DBusBindings
-Source0:		http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-Source1:		dbus-python.rpmlintrc
-#Patch0:			dbus-python-0.83.2-fix-linkage.patch
-License:		MIT
-Group:			Development/Python
-BuildRequires:	dbus-devel >= %{dbus_version}
-BuildRequires:	dbus-glib-devel >= %{dbus_glib_version}
-BuildRequires:	python-devel
+Summary: D-Bus Python Bindings
+Name: dbus-python
+Version: %{py2version}
+Release: 2
+URL: http://www.freedesktop.org/wiki/Software/DBusBindings
+Source0: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{py2version}.tar.gz
+Source1: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{py2version}.tar.gz.asc
+Source2: http://dbus.freedesktop.org/releases/%{name}/%{name}-%{py3version}.tar.gz
+#Patch0: dbus-python-0.83.2-fix-linkage.patch
+License: MIT
+Group: Development/Python
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: dbus-devel >= %{dbus_version}
+BuildRequires: dbus-glib-devel >= %{dbus_glib_version}
+BuildRequires: python-devel
+BuildRequires: python3-devel
 
 %description
 D-Bus python bindings for use with python programs.
 
 %package -n python-dbus
-Summary:		D-Bus Python Bindings
-Group:			Development/Python
-Obsoletes:		%{name} < %{version}-%{release}
-Provides:		%{name} = %{version}-%{release}
-Requires:		dbus >= %{dbus_version}
+Summary: D-Bus Python Bindings
+Group: Development/Python
+Obsoletes: %{name} < %{version}-%{release}
+Provides: %{name} = %{version}-%{release}
+Requires: dbus >= %{dbus_version}
 
 %description -n python-dbus
-D-Bus python bindings for use with python programs.
+D-Bus python 3 bindings for use with python programs.
+
+%package -n python3-dbus
+Version: %{py3version}
+Summary: D-Bus Python 3 Bindings
+Group: Development/Python
+Provides: python3-dbus = %{version}-%{release}
+Requires: dbus >= %{dbus_version}
+
+%description -n python3-dbus
+D-Bus python bindings for use with python 3 programs.
 
 %prep
-%setup -q
-#patch0 -p0 -b .link
+
+%setup -q -c -a 0
+%setup -q -c -a 2
+ls
+mv %{name}-%{py2version} python2
+mv %{name}-%{py3version} python3
+
+#pushd python2
+#%patch0 -p0 -b .link
+#popd
+
 
 %build
+pushd python2
+autoreconf -fi
 %configure2_5x --disable-api-docs
 %make
+popd
+
+pushd python3
+autoreconf -fi
+%configure2_5x --disable-api-docs PYTHON=%__python3
+%make
+popd
+
+
 
 %install
+rm -rf %{buildroot} 
+
+pushd python2
 %makeinstall_std
+popd
+
+pushd python3
+%makeinstall_std
+popd
 
 #remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
-%doc COPYING NEWS doc/*.txt
-%doc README
+%defattr(-,root,root)
+%doc python2/COPYING python2/NEWS python2/doc/*.txt
+%doc python2/README python2/TODO
 %{py_puresitedir}/dbus*
 %{py_platsitedir}/_dbus_*
 %{_includedir}/dbus-1.0/dbus/*.h
 %{_libdir}/pkgconfig/*.pc
+
+%files -n python3-dbus
+%defattr(-,root,root)
+%doc python3/COPYING python3/NEWS python3/doc/*.txt
+%doc python3/README
+%{py3_puresitedir}/dbus*
+%{py3_platsitedir}/_dbus_*
+
 
 
 %changelog
