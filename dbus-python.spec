@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.1.1
