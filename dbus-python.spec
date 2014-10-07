@@ -3,7 +3,7 @@
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.2.0
-Release:	8
+Release:	9
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
@@ -38,7 +38,7 @@ D-Bus python bindings for use with python 3 programs.
 Summary:	Development files for python-dbus and python2-dbus
 Group:		Development/Python
 Requires:	python2-dbus = %{EVRD}
-Requires:	python-dbus = %{EVRD}
+Requires:	python3-dbus = %{EVRD}
 
 %description -n python-dbus-devel
 Header files for python-dbus and python3-dbus.
