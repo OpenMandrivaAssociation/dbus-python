@@ -2,15 +2,15 @@
 
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
-Version:	1.2.0
-Release:	14
+Version:	1.2.4
+Release:	1
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(python3)
 
 %description
@@ -20,7 +20,7 @@ D-Bus python bindings for use with python programs.
 Summary:	D-Bus Python Bindings
 Group:		Development/Python
 Requires:	dbus
-%rename python-dbus
+%rename	python-dbus
 
 %description -n python2-dbus
 D-Bus python 2 bindings for use with python programs.
@@ -39,6 +39,8 @@ Summary:	Development files for python-dbus and python2-dbus
 Group:		Development/Python
 Requires:	python2-dbus = %{EVRD}
 Requires:	python3-dbus = %{EVRD}
+BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 
 %description -n python-dbus-devel
 Header files for python-dbus and python3-dbus.
@@ -49,13 +51,6 @@ mv %{name}-%{version} python2
 cp -r python2 python3
 
 %build
-pushd python2
-sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
-autoreconf -fi
-%configure --disable-api-docs PYTHON=%{_bindir}/python2
-%make
-popd
-
 pushd python3
 sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
@@ -63,12 +58,19 @@ autoreconf -fi
 %make
 popd
 
-%install
 pushd python2
+sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
+autoreconf -fi
+%configure --disable-api-docs PYTHON=%{_bindir}/python2
+%make
+popd
+
+%install
+pushd python3
 %makeinstall_std
 popd
 
-pushd python3
+pushd python2
 %makeinstall_std
 popd
 
@@ -90,4 +92,3 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 %files -n python-dbus-devel
 %{_includedir}/dbus-1.0/dbus/*.h
 %{_libdir}/pkgconfig/*.pc
-
