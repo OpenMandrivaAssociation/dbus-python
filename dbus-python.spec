@@ -2,8 +2,8 @@
 
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
-Version:	1.2.8
-Release:	2
+Version:	1.2.10
+Release:	1
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
@@ -51,28 +51,28 @@ mv %{name}-%{version} python2
 cp -r python2 python3
 
 %build
-pushd python3
+cd python3
 sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
 %configure --disable-api-docs
-%make
-popd
+%make_build
+cd -
 
-pushd python2
+cd python2
 sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
 %configure --disable-api-docs PYTHON=%{_bindir}/python2
-%make
-popd
+%make_build
+cd -
 
 %install
-pushd python3
-%makeinstall_std
-popd
+cd python3
+%make_install
+cd -
 
-pushd python2
-%makeinstall_std
-popd
+cd python2
+%make_install
+cd -
 
 #remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
