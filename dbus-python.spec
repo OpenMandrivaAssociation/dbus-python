@@ -52,8 +52,8 @@ autoreconf -fi
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
-%doc python3/COPYING python3/NEWS python3/doc/*.txt
-%doc python3/README
+%doc COPYING NEWS doc/*.txt
+%doc README
 %{py_puresitedir}/dbus*
 %{py_platsitedir}/_dbus_*
 
