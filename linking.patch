@@ -1,0 +1,30 @@
+diff --git a/Makefile.am b/Makefile.am
+index 21149b5..8418c4b 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -147,7 +147,7 @@ test_dbus_py_test_la_LDFLAGS = \
+ 	$(AM_LDFLAGS) \
+ 	-rpath $(installed_testdir) \
+ 	$(NULL)
+-test_dbus_py_test_la_LIBADD = $(DBUS_LIBS)
++test_dbus_py_test_la_LIBADD = $(PYTHON_LIBS) $(DBUS_LIBS)
+ test_dbus_py_test_la_SOURCES = \
+ 	include/dbus/dbus-python.h \
+ 	test/dbus_py_test.c \
+diff --git a/Makefile.am b/Makefile.am
+index 8418c4b..8243c4a 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -68,10 +68,11 @@ pymod_ldflags += \
+ 	-no-undefined \
+ 	-shrext ".pyd" \
+ 	$(NULL)
++endif
++
+ pymod_libadd += \
+ 	$(PYTHON_LIBS) \
+ 	$(NULL)
+-endif
+ 
+ pyexec_LTLIBRARIES = \
+ 	_dbus_bindings.la \

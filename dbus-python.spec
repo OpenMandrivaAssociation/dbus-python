@@ -1,35 +1,28 @@
-%define _disable_ld_no_undefined 1
+%global __requires_exclude python-gi
 
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.2.16
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+Patch0:		linking.patch
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(python3)
+BuildRequires:	dbus-x11
 
 %description
 D-Bus python bindings for use with python programs.
 
-%package -n python2-dbus
-Summary:	D-Bus Python Bindings
-Group:		Development/Python
-Requires:	dbus
-%rename	python-dbus
-
-%description -n python2-dbus
-D-Bus python 2 bindings for use with python programs.
-
 %package -n python-dbus
 Summary:	D-Bus Python 3 Bindings
 Group:		Development/Python
-Requires:	dbus
-%rename python3-dbus
+Requires:	dbus-x11
+%rename	python3-dbus
+%rename	python-dbus
 
 %description -n python-dbus
 D-Bus python bindings for use with python 3 programs.
@@ -37,51 +30,26 @@ D-Bus python bindings for use with python 3 programs.
 %package -n python-dbus-devel
 Summary:	Development files for python-dbus and python2-dbus
 Group:		Development/Python
-Requires:	python2-dbus = %{EVRD}
 Requires:	python3-dbus = %{EVRD}
-BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(python3)
 
 %description -n python-dbus-devel
 Header files for python-dbus and python3-dbus.
 
 %prep
-%setup -q -c -a 0
-mv %{name}-%{version} python2
-cp -r python2 python3
+%autosetup -p1
 
 %build
-cd python3
 sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
 autoreconf -fi
 %configure --disable-api-docs
 %make_build
-cd -
-
-cd python2
-sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
-autoreconf -fi
-%configure --disable-api-docs PYTHON=%{_bindir}/python2
-%make_build
-cd -
 
 %install
-cd python3
 %make_install
-cd -
-
-cd python2
-%make_install
-cd -
 
 #remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
-
-%files -n python2-dbus
-%doc python2/COPYING python2/NEWS python2/doc/*.txt
-%doc python2/README
-%{py2_puresitedir}/dbus*
-%{py2_platsitedir}/_dbus_*
 
 %files -n python-dbus
 %doc python3/COPYING python3/NEWS python3/doc/*.txt
