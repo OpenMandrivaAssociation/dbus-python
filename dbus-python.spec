@@ -3,7 +3,7 @@
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.2.16
-Release:	5
+Release:	6
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
@@ -11,7 +11,7 @@ Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		linking.patch
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	dbus-x11
 
 %description
@@ -55,8 +55,8 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 %files -n python-dbus
 %doc COPYING NEWS doc/*.txt
 %doc README
-%{py_puresitedir}/dbus*
-%{py_platsitedir}/_dbus_*
+#{py_puresitedir}/dbus*
+#{py_platsitedir}/_dbus_*
 
 %files -n python-dbus-devel
 %{_includedir}/dbus-1.0/dbus/*.h
