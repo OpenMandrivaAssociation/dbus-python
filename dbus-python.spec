@@ -60,8 +60,8 @@ rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
 %doc README NEWS doc/*.txt
-%{python3_sitearch}/dbus*
-%{python3_sitearch}/_dbus_*
+#{python_sitearch}/dbus*
+#{python_sitearch}/_dbus_*
 
 %files -n python-dbus-devel
 %{_includedir}/dbus-1.0/dbus/*.h
