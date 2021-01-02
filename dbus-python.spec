@@ -9,6 +9,7 @@ Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		linking.patch
+BuildRequires:  python3dist(setuptools)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(python)
