@@ -3,15 +3,16 @@
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.2.16
-Release:	5
+Release:	6
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		linking.patch
+BuildRequires:  python3dist(setuptools)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	dbus-x11
 
 %description
@@ -29,10 +30,10 @@ Provides:	dbus-python = %{EVRD}
 D-Bus python bindings for use with python 3 programs.
 
 %package -n python-dbus-devel
-Summary:	Development files for python-dbus and python2-dbus
+Summary:	Development files for python-dbus
 Group:		Development/Python
 Requires:	python-dbus = %{EVRD}
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 
 %description -n python-dbus-devel
 Header files for python-dbus and python3-dbus.
@@ -41,22 +42,28 @@ Header files for python-dbus and python3-dbus.
 %autosetup -p1
 
 %build
-sed -i -e 's/AM_CONFIG_HEADER/AC_CONFIG_HEADERS/g' configure*
-autoreconf -fi
-%configure --disable-api-docs
-%make_build
+
+autoreconf -vfi
+%py_build
 
 %install
-%make_install
+%py_install
+
+mkdir -p %{buildroot}%{_libdir}/pkgconfig/
+install -p -m 0644 build/temp.linux-*-%{python_version}/dbus-python.pc %{buildroot}%{_libdir}/pkgconfig/
+sed -i 's\prefix=.*\prefix=/usr\g' %{buildroot}%{_libdir}/pkgconfig/dbus-python.pc
+mkdir -p %{buildroot}%{_includedir}/dbus-1.0/dbus/
+install -p -m 0444 include/dbus/dbus-python.h %{buildroot}%{_includedir}/dbus-1.0/dbus/
 
 #remove unpackaged files
 rm -rf %{buildroot}%{_datadir}/doc/dbus-python
 
 %files -n python-dbus
-%doc COPYING NEWS doc/*.txt
-%doc README
-%{py_puresitedir}/dbus*
-%{py_platsitedir}/_dbus_*
+%doc README NEWS doc/*.txt
+%{python_sitearch}/_dbus_*
+%{python_sitearch}/dbus/*
+%{python_sitearch}/dbus_python-%{version}-py*.*.egg-info/
+%{python_sitearch}/dbus_python-%{version}-py*.*.egg-info/PKG-INFO
 
 %files -n python-dbus-devel
 %{_includedir}/dbus-1.0/dbus/*.h
