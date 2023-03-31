@@ -3,7 +3,7 @@
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
 Version:	1.2.18
-Release:	3
+Release:	4
 License:	MIT
 Group:		Development/Python
 Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
