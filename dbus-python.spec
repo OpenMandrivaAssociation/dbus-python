@@ -6,7 +6,7 @@ Version:	1.2.18
 Release:	4
 License:	MIT
 Group:		Development/Python
-Url:		http://www.freedesktop.org/wiki/Software/DBusBindings
+Url:		https://www.freedesktop.org/wiki/Software/DBusBindings
 Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Patch0:		linking.patch
 Patch1:		0001-Move-python-modules-to-architecture-specific-directo.patch
