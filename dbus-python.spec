@@ -21,6 +21,7 @@ BuildRequires:	automake
 BuildRequires:	libtool-base
 BuildRequires:	make
 BuildRequires:	autoconf-archive
+BuildRequires:	patchelf
 
 %description
 D-Bus python bindings for use with python programs.
