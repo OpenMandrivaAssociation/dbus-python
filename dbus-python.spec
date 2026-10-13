@@ -2,26 +2,27 @@
 
 Summary:	D-Bus Python Bindings
 Name:		dbus-python
-Version:	1.4.0
+Version:	1.5.0
 Release:	1
-License:	MIT
+License:	MIT and (GPLv2+ or AFL)
 Group:		Development/Python
 Url:		https://www.freedesktop.org/wiki/Software/DBusBindings
-Source0:	http://dbus.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.xz
-Patch0:		linking.patch
+# The 1.5 sdist is published as dbus_python, with that directory name.
+Source0:	https://files.pythonhosted.org/packages/source/d/dbus-python/dbus_python-%{version}.tar.gz
 BuildSystem:	python
 BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(meson-python)
+BuildRequires:	meson
+BuildRequires:	ninja
+BuildRequires:	patchelf
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	dbus-x11
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	make
-BuildRequires:	autoconf-archive
-BuildRequires:	patchelf
+
+# The PyPI sdist unpacks as dbus_python-VERSION, not dbus-python-VERSION.
+%global buildsystem_default_prep() %%autosetup -C -p1 -n dbus_python-%%{version} %%*
 
 %description
 D-Bus python bindings for use with python programs.
